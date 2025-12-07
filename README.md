@@ -75,55 +75,51 @@ prisma/
  ├── migrations/        # SQL Migrations
  └── schema.prisma      # Data Model
 ```
-
 ## 🛠️ Getting Started
+
 Follow these steps to set up the backend locally.
 
-Prerequisites
-Node.js (v16+)
+### Prerequisites
+* Node.js (v16+)
+* PostgreSQL & Redis (running locally or via Docker)
+* AWS S3 Bucket (optional, for file uploads)
 
-PostgreSQL & Redis (running locally or via Docker)
+### Installation
 
-AWS S3 Bucket (optional, for file uploads)
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/hk12maddheshiya/SocialGraph-API.git](https://github.com/hk12maddheshiya/SocialGraph-API.git)
+    cd backend
+    ```
 
-Installation
-Clone the repository
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-Bash
+3.  **Environment Configuration**
+    Create a `.env` file in the root directory:
+    ```env
+    # Database
+    DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/twitter_clone"
 
-git clone [https://github.com/hk12maddheshiya/SocialGraph-API.git](https://github.com/hk12maddheshiya/SocialGraph-API.git)
-cd backend
-Install Dependencies
+    # Redis
+    REDIS_URL="redis://localhost:6379"
 
-Bash
+    # Auth
+    JWT_SECRET="your_strong_secret_key"
 
-npm install
-Environment Configuration Create a .env file in the root directory:
+    # Google OAuth (Optional)
+    GOOGLE_CLIENT_ID=""
+    GOOGLE_CLIENT_SECRET=""
+    GOOGLE_REDIRECT_URI="http://localhost:4000/oauth/google/callback"
 
-Code snippet
-
-# Database
-DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/twitter_clone"
-
-# Redis
-REDIS_URL="redis://localhost:6379"
-
-# Auth
-JWT_SECRET="your_strong_secret_key"
-
-# Google OAuth (Optional)
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
-GOOGLE_REDIRECT_URI="http://localhost:4000/oauth/google/callback"
-
-# AWS S3 (For Storage)
-AWS_ACCESS_KEY_ID="your_access_key"
-AWS_SECRET_ACCESS_KEY="your_secret_key"
-AWS_REGION="ap-south-1"
-AWS_S3_BUCKET="twitter-clone-bucket"
-Database Setup
-
-## 🛠️ Database Setup
+    # AWS S3 (For Storage)
+    AWS_ACCESS_KEY_ID="your_access_key"
+    AWS_SECRET_ACCESS_KEY="your_secret_key"
+    AWS_REGION="ap-south-1"
+    AWS_S3_BUCKET="twitter-clone-bucket"
+    ```
 
 4.  **Database Migration**
     ```bash
@@ -158,4 +154,22 @@ services:
   redis:
     image: redis:7
     ports: ["6379:6379"]
-Run docker-compose up -d to start these services.
+Run `docker-compose up -d` to start these services.
+```
+## 🤝 Contributing
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/NewFeature`)
+3.  Commit your Changes (`git commit -m 'Add some NewFeature'`)
+4.  Push to the Branch (`git push origin feature/NewFeature`)
+5.  Open a Pull Request
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+<div align="center">
+  <b>Backend Architecture by <a href="https://github.com/hk12maddheshiya">Harsh Kumar Maddheshiya</a></b>
+</div>
