@@ -170,6 +170,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-<div align="center">
-  <b>Backend Architecture by <a href="https://github.com/hk12maddheshiya">Harsh Kumar Maddheshiya</a></b>
-</div>
+]
