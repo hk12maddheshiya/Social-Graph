@@ -74,7 +74,9 @@ src/
 prisma/
  ├── migrations/        # SQL Migrations
  └── schema.prisma      # Data Model
-🛠️ Getting Started
+```
+
+## 🛠️ Getting Started
 Follow these steps to set up the backend locally.
 
 Prerequisites
