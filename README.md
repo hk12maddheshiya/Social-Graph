@@ -123,25 +123,28 @@ AWS_REGION="ap-south-1"
 AWS_S3_BUCKET="twitter-clone-bucket"
 Database Setup
 
-Bash
+## 🛠️ Database Setup
 
-# Generate Prisma Client
-npx prisma generate
+4.  **Database Migration**
+    ```bash
+    # Generate Prisma Client
+    npx prisma generate
 
-# Push schema to DB
-npx prisma migrate dev --name init
-Run the Server
+    # Push schema to DB
+    npx prisma migrate dev --name init
+    ```
 
-Bash
+5.  **Run the Server**
+    ```bash
+    npm run dev
+    ```
+    * **Playground:** Open `http://localhost:4000/graphql` to test the API.
 
-npm run dev
-Playground: Open http://localhost:4000/graphql to test the API.
+## 🐳 Docker Quickstart
 
-🐳 Docker Quickstart
 To quickly spin up the database and cache without local installation:
 
-YAML
-
+```yaml
 version: "3.8"
 services:
   db:
@@ -156,14 +159,3 @@ services:
     image: redis:7
     ports: ["6379:6379"]
 Run docker-compose up -d to start these services.
-
-🤝 Contributing
-Fork the Project
-
-Create your Feature Branch (git checkout -b feature/NewFeature)
-
-Commit your Changes (git commit -m 'Add some NewFeature')
-
-Push to the Branch (git push origin feature/NewFeature)
-
-Open a Pull Request
