@@ -1,59 +1,105 @@
-# Twitter Clone — Backend (Team Project)
+# 🕸️ SocialGraph - Social Media Backend
 
-> This repository documents the **backend** of a full-stack Twitter-like application.
-> **Team project**: I worked **exclusively on the backend** (API, DB, auth, caching, performance).
+<div align="center">
 
-## 🚀 Backend at a Glance
+![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
-* **API**: GraphQL (Apollo Server)
-* **Runtime**: Node.js
-* **ORM/DB**: Prisma ORM + PostgreSQL
-* **Cache/Queues**: Redis
-* **Auth**: JWT (plus Google OAuth if enabled)
-* **Infra/Storage**: AWS S3 for file storage
-* **Typing/Tooling**: TypeScript + GraphQL Codegen
+**The high-performance backend infrastructure for a full-stack Twitter Clone.**
 
----
+[Report Bug](https://github.com/hk12maddheshiya/SocialGraph-API/issues) · [Request Feature](https://github.com/hk12maddheshiya/SocialGraph-API/issues)
 
-## ✨ Backend Features
-
-* **User auth**: Email/password with **bcrypt**; JWT-based sessions; optional Google OAuth.
-* **Tweets**: Create, delete, fetch timelines; like/unlike; retweet.
-* **Follow system**: Follow/unfollow users; personalized feeds.
-* **Profiles**: Public profile, stats (tweets/followers/following).
-* **Performance**: Redis caching of hot queries and counts; optimized Prisma queries.
-* **File Storage**: Profile images & media stored in **AWS S3**.
+</div>
 
 ---
 
-## 📂 Folder Structure (Backend)
+## 📖 Overview
 
-```
+**SocialGraph** serves as the backend engine for a large-scale **Social Media Application** (Twitter Clone).
+
+> **👨‍💻 Team Project Role:**
+> While this was a full-stack team initiative, **I worked exclusively on the backend architecture**. My contributions included designing the GraphQL API, optimizing database modeling with Prisma, implementing secure authentication, and integrating Redis caching for high-speed social graph traversals.
+
+## 🚀 Key Features
+
+### 🔐 Authentication & Security
+* **Secure Auth:** Email/password login using **bcrypt** hashing.
+* **Session Management:** Stateless authentication via **JWT**.
+* **OAuth:** Optional Google Login integration.
+* **Rate Limiting:** Protection against API abuse.
+
+### 🐦 Social Core (Twitter Logic)
+* **Tweet Management:** Create, delete, like, unlike, and retweet functionality.
+* **Timeline Generation:** Personalized feeds based on the user's social graph.
+* **Social Graph:** Complex Follow/Unfollow system with optimized graph traversal queries.
+* **User Profiles:** Public profiles displaying live stats (Tweets, Followers, Following).
+
+### ⚡ Performance & Infrastructure
+* **Caching Layer:** **Redis** integration to cache hot queries (e.g., user feeds, interaction counts).
+* **Database:** **PostgreSQL** with **Prisma ORM** for type-safe, efficient relational queries.
+* **Cloud Storage:** Media assets (Profile pictures, tweet images) securely stored in **AWS S3**.
+
+## 💻 Tech Stack
+
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Runtime** | Node.js | Server-side JavaScript runtime |
+| **API** | Apollo Server | GraphQL server implementation |
+| **Language** | TypeScript | Static typing for scalability |
+| **Database** | PostgreSQL | Primary relational database |
+| **ORM** | Prisma | Database schema & query management |
+| **Caching** | Redis | In-memory store for performance |
+| **Storage** | AWS S3 | Object storage for files |
+
+## 📂 Folder Structure
+
+```text
 /backend
 src/
- ├── app/
- │    ├── tweet/
- │    └── user/
- ├── clients/
- │    ├── db/
- │    └── redis/
- ├── services/
- │    ├── jwt.ts
- │    ├── tweet.ts
- │    └── user.ts
- └── index.ts
+ ├── app/               # GraphQL Resolvers & Types
+ │    ├── tweet/        # Tweet-related logic
+ │    └── user/         # User & Auth logic
+ ├── clients/           # External client connections
+ │    ├── db/           # Prisma Client instance
+ │    └── redis/        # Redis Client instance
+ ├── services/          # Business Logic Layer
+ │    ├── jwt.ts        # Token generation/validation
+ │    ├── tweet.ts      # Tweet service methods
+ │    └── user.ts       # User service methods
+ └── index.ts           # Entry point
 prisma/
- ├── migrations/
- └── schema.prisma
+ ├── migrations/        # SQL Migrations
+ └── schema.prisma      # Data Model
+🛠️ Getting Started
+Follow these steps to set up the backend locally.
 
+Prerequisites
+Node.js (v16+)
 
----
+PostgreSQL & Redis (running locally or via Docker)
 
-## 🔑 Environment Variables
+AWS S3 Bucket (optional, for file uploads)
 
-Create a `.env` file at `/backend/.env` (local dev).
+Installation
+Clone the repository
 
-```env
+Bash
+
+git clone [https://github.com/hk12maddheshiya/SocialGraph-API.git](https://github.com/hk12maddheshiya/SocialGraph-API.git)
+cd backend
+Install Dependencies
+
+Bash
+
+npm install
+Environment Configuration Create a .env file in the root directory:
+
+Code snippet
+
 # Database
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/twitter_clone"
 
@@ -61,64 +107,39 @@ DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/twitter_clone"
 REDIS_URL="redis://localhost:6379"
 
 # Auth
-JWT_SECRET="replace_with_strong_secret"
+JWT_SECRET="your_strong_secret_key"
 
-# Optional: Google OAuth
+# Google OAuth (Optional)
 GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 GOOGLE_REDIRECT_URI="http://localhost:4000/oauth/google/callback"
 
-# AWS (for storage)
-AWS_ACCESS_KEY_ID=""
-AWS_SECRET_ACCESS_KEY=""
+# AWS S3 (For Storage)
+AWS_ACCESS_KEY_ID="your_access_key"
+AWS_SECRET_ACCESS_KEY="your_secret_key"
 AWS_REGION="ap-south-1"
 AWS_S3_BUCKET="twitter-clone-bucket"
-```
+Database Setup
 
----
+Bash
 
-## 🛠️ Setup & Run (Backend Only)
+# Generate Prisma Client
+npx prisma generate
 
-1. **Clone & move into backend**
+# Push schema to DB
+npx prisma migrate dev --name init
+Run the Server
 
-   ```bash
-   git clone https://github.com/your-org/your-repo.git
-   cd backend
-   ```
+Bash
 
-2. **Install deps**
+npm run dev
+Playground: Open http://localhost:4000/graphql to test the API.
 
-   ```bash
-   npm install
-   ```
+🐳 Docker Quickstart
+To quickly spin up the database and cache without local installation:
 
-3. **Generate Prisma client & apply schema**
+YAML
 
-   ```bash
-   npx prisma generate
-   npx prisma migrate dev --name init
-   ```
-
-4. **Start dev server**
-
-   ```bash
-   npm run dev
-   ```
-
-   * GraphQL Playground: `http://localhost:4000/graphql`
-
-5. **Build & run (prod-like)**
-
-   ```bash
-   npm run build
-   npm start
-   ```
-
----
-
-## 🐳 Docker Quickstart
-
-```yaml
 version: "3.8"
 services:
   db:
@@ -132,20 +153,15 @@ services:
   redis:
     image: redis:7
     ports: ["6379:6379"]
-```
+Run docker-compose up -d to start these services.
 
----
+🤝 Contributing
+Fork the Project
 
-## 🔒 Security Highlights
+Create your Feature Branch (git checkout -b feature/NewFeature)
 
-* Passwords hashed with **bcrypt**.
-* **JWT** for stateless auth; verified in Apollo context.
-* Files (profile pics, media) stored in **AWS S3**.
-* Input validation & rate-limiting.
+Commit your Changes (git commit -m 'Add some NewFeature')
 
----
+Push to the Branch (git push origin feature/NewFeature)
 
-## 👥 Credits
-
-* **Team project** (full-stack).
-* **My role**: Backend only — GraphQL API, Prisma models, auth (JWT + bcrypt), Redis caching, AWS S3 integration, and performance improvements.
+Open a Pull Request
